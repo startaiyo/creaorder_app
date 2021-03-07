@@ -1,19 +1,40 @@
+{% load static %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
   <title>Index</title>
 </head>
 <body>
-  <h1>hello world</h1>
-     
-   <form method="POST">
-   {%csrf_token%}
-   <p>{{ form }}</p>
-    <input type="submit" value="mail送信">
-   </form>
-   <a href="{% url 'creaapp:noorder' %}">注文しない</a>
+  <div class="container">
+    <div class="bg-light p-3 p-sm-5 my-4 rounded">
+      <h1>クレアマウス餌注文App</h1>
+        <p>個数を入力するだけで簡単に餌発注メールが送れます。</p>
+      </div>
+  </div>  
+    <h3 style="padding: 1rem 2rem;
+  border-top: 6px double #000;
+  background: #f4f4f4;">注文する個数を入力してください:</h3>
+  
+  <div class="mx-auto" style="width: 200px;">
+    <form method="POST">
+    {%csrf_token%}
+    <p>{{ form.as_p }}</p>
+  </div>
+  <h3 style="padding: 1rem 2rem;
+  border-top: 6px double #000;
+  background: #f4f4f4;">
+    注文する場合はメール送信、しない場合は注文しないを押してください。</h3>
+    <div class="mx-auto" style="width: 200px;">
+      <input type="submit" class="btn text-white bg-dark" value="メール送信">
+    </form>
+    <a href="{% url 'creaapp:noorder' %}" class="btn text-white bg-dark" role="button">注文しない</a>
+    </div>
+
 </body>
 </html>
