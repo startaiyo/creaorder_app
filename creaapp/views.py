@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from . import forms
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -20,9 +19,9 @@ def index(request):
     subject = "マウス餌CE-2（京大薬システムバイオ）"
     context={'form':form, 'sunt':sunt, 'many':many, 'jaday':jaday, 'weight':weight}
     message = render_to_string('creaapp/mails.txt', context, request)
-    from_email = settings.DEFAULT_FROM_EMAIL  # 送信者
-    recipient_list = ["startaiyo0104@gmail.com"]  # 宛先リスト
-    bcc =  [""]  # BCCリスト
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = ["startaiyo0104@gmail.com"]
+    bcc =  [""]
     send_mail(subject, message, from_email, recipient_list, bcc)
     return render(
       request, "creaapp/ordered.html",context={'form':form}
@@ -40,9 +39,9 @@ def noorder(request):
   subject = "マウス餌CE-2（京大薬システムバイオ）"
   context={'sunt':sunt, 'jaday':jaday}
   message = render_to_string('creaapp/mails2.txt', context, request)
-  from_email = settings.DEFAULT_FROM_EMAIL  # 送信者
-  recipient_list = ["startaiyo0104@gmail.com"]  # 宛先リスト
-  bcc =  [""]  # BCCリスト
+  from_email = settings.DEFAULT_FROM_EMAIL
+  recipient_list = ["startaiyo0104@gmail.com"]
+  bcc =  [""]
   send_mail(subject, message, from_email, recipient_list, bcc)
   return render(
       request, "creaapp/ordered.html"
